@@ -18,7 +18,10 @@ def add_value_to_dict(dictionary, key, value):
         add_value_to_dict(dictionary, path[1], value)
         return
     if (len(path)<2) or not path[1]:
-        dictionary[path[0]] = value
+        if type(dictionary.get(path[0])) is not dict:
+	    dictionary[path[0]] = value
+	else:
+	    dictionary[path[0]]["_"] = value
         return
     if type(dictionary.get(path[0])) is not dict:
         if dictionary.get(path[0]) is not None:
