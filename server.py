@@ -21,7 +21,13 @@ def add_value_to_dict(dictionary, key, value):
         dictionary[path[0]] = value
         return
     if type(dictionary.get(path[0])) is not dict:
-        dictionary[path[0]] = {}
+        if dictionary.get(path[0]) is not None:
+	    old_value = dictionary.get(path[0])
+	    dictionary[path[0]] = {}
+	    dictionary[path[0]]["_"] = old_value
+	    return
+	else:
+            dictionary[path[0]] = {}
     add_value_to_dict(dictionary[path[0]], path[1], value)
 
 #mqtt special
