@@ -35,7 +35,7 @@ def start_update_mqtt():
     mqtt_client = mqtt.Client()
     mqtt_client.on_connect = on_mqtt_connect
     mqtt_client.on_message = on_mqtt_message
-    mqtt_client.connect("iot.eclipse.org", 1883, 60)
+    mqtt_client.connect(brocker_address, 1883, 60)
     mqtt_client.loop_forever()
     mqtt_client.disconnect()
 #http special
