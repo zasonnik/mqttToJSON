@@ -12,17 +12,18 @@ http_port = 3000
 #global variables
 mqtt_values = {}
 #code
-def add_value_to_dict(dict, key, value):
+def add_value_to_dict(dictionary, key, value):
     path = key.split("/", 1);
     if (not path[0]) and path[1]:
-        add_value_to_dict(dict, path[1], value)
+        add_value_to_dict(dictionary, path[1], value)
         return
     if (len(path)<2) or not path[1]:
-        dict[path[0]] = value
+        dictionary[path[0]] = value
         return
-    if dict.get(path[0]) is None:
-        dict[path[0]] = {}
-    add_value_to_dict(dict[path[0]], path[1], value)
+    if type(dictionary.get(path[0])) is not dict:
+        dictionary[path[0]] = {}
+    add_value_to_dict(dictionary[path[0]], path[1], value)
+
 #mqtt special
 def on_mqtt_connect(client, userdata, flags, rc):
     client.subscribe(root_topic+"/#");
