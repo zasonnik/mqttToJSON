@@ -8,5 +8,3 @@ To install it:
 pip install paho-mqtt
 ```
 
-TODO:
-+ Add post messages funtion
