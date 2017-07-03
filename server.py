@@ -116,7 +116,7 @@ class HttpHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 	        value = urllib.unquote(c_arr[1]).decode('utf8')
 	        data[key] = value
 	
-	post_mqtt_message(root_topic+"/"+data["topic"], data["value"])
+	post_mqtt_message(data["topic"], data["value"])
 
         s.send_response(200)
 	s.send_header("Content-type", "application/json; charset=utf-8")
